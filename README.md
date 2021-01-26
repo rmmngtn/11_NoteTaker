@@ -26,7 +26,7 @@ npm i
 
 ## Usage
 ​
-git clone the repo. . 
+git clone the repo. 
 ​
 ​
 ## License
