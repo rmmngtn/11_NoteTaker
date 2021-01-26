@@ -1,4 +1,5 @@
 const path = require('path');
+// const app = require("express"); 
 const fs = require('fs');
 // const notes = require("../db/db.json"); 
 
@@ -7,9 +8,7 @@ module.exports = function(app) {
     app.get("/api/notes", function (req, res) {
         res.sendFile(path.join(__dirname, "../db/db.json"));
 
-    })
-
-
+    });
 
     app.post("/api/notes", function (req, res) {
         res.sendFile(__dirname + "/db/db.json", function (err, notes) {
