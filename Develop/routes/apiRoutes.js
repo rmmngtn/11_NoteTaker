@@ -1,3 +1,4 @@
+const { fstat } = require('fs');
 const path = require('path');
 // const waitlist = require('../data/waitinglistData');
 // const tables = require("../data/tableData");
@@ -9,13 +10,16 @@ module.exports = function (app) {
     });
 
     app.post("/api/notes", function (req, res) {
-        let newNote = req.body;
-        console.log(newNote); 
+        fs.readFile(__dirname + "/db/db.json", (err) => { 
+            if (err) throw err; 
+        })
 
-        notes.push(newNote); 
-        // res.send
-        notes.writeNote(); 
-
- 
     })
 }
+
+
+
+fs.writeFile('./output/team.html', html, (err) => {
+    if (err) throw err;
+    console.log('The file has been saved!');
+});
