@@ -1,5 +1,4 @@
 const express = require("express"); 
-const path = require("path"); 
 const apiRoutes = require("./routes/apiRoutes"); 
 const htmlRoutes = require("./routes/htmlRoutes"); 
 
@@ -13,8 +12,8 @@ app.use("/api", apiRoutes);
 app.use("/", htmlRoutes); 
 
 
-require("./routes/apiRoutes")(app); 
-require("./routes/htmlRoutes")(app); 
+
+
 
 
 
