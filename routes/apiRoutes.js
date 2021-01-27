@@ -17,7 +17,7 @@ module.exports = function(app) {
     app.post("/api/notes", function (req, res) {
         let newNote = req.body; 
         notes.push(newNote); 
-        
+        req.body.id = notes.length; 
         updateDB(); 
         console.log("New note: " + JSON.stringify(newNote)); 
 
@@ -26,13 +26,13 @@ module.exports = function(app) {
 
     app.get("/api/notes/:id", function(res, req){ 
         return res.json(notes[req.params.id]); 
-        // console.log([req.params.id]); 
+        
     }); 
 
     app.delete("/api/notes/:id", function(res, req) { 
-        notes.splice(req.params.id, 1); 
+        notes.splice(notes.id, 1); 
         updateDB(); 
-        console.log("Deleted note " + notes.id.title); 
+        console.log("Deleted note"); 
 
     })
 
