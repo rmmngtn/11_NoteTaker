@@ -1,35 +1,50 @@
-const path = require('path');
-// const app = require("express"); 
-const fs = require('fs');
-// const notes = require("../db/db.json"); 
+const path = require("path");
+const fs = require("fs");
 
+var notes = []
 
 module.exports = function(app) {
-    app.get("/api/notes", function (req, res) {
-        res.sendFile(path.join(__dirname, "../db/db.json"));
+    fs.readFile("./db/db.json", function(err, data) { 
+        if (err) throw err; 
+        notes = JSON.parse(data); 
+    }); 
 
+    app.get("/api/notes", function (req, res) {
+        res.json(notes); 
+        // console.log(notes);
     });
 
     app.post("/api/notes", function (req, res) {
-        res.sendFile(__dirname + "/db/db.json", function (err, notes) {
-            if (err) {
-                console.log(err);
-            }
-        });
+        let newNote = req.body; 
+        notes.push(newNote); 
+        
+        updateDB(); 
+        console.log("New note: " + JSON.stringify(newNote)); 
 
-        notes = JSON.parse(notes)
+       
+    }); 
 
-        var newNote = { title: req.body.title, text: req.body.text}
-        var activeNote = notes.concat(newNote)
+    app.get("/api/notes/:id", function(res, req){ 
+        return res.json(notes[req.params.id]); 
+        // console.log([req.params.id]); 
+    }); 
 
-        fs.writeFile(__dirname + "/db/db.json", JSON.stringify(activeNote), function (error, data) {
-            if (error) {
-                return error
-            }
-            console.log(activeNote)
-            res.json(activeNote);
-        });
+    app.delete("/api/notes/:id", function(res, req) { 
+        notes.splice(req.params.id, 1); 
+        updateDB(); 
+        console.log("Deleted note " + notes.id.title); 
+
     })
+
+
+    function updateDB() { 
+        fs.writeFile("./db/db.json", JSON.stringify(notes), (err) => {
+        if (err) throw err }); 
+
+        return true; 
+        
+        
+    }; 
 
 
 }

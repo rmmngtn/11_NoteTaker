@@ -10,8 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
-    "nodemon": "^2.0.7"
+    "express": "^4.17.1"
   },
   "repository": {
     "type": "git",
@@ -21,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/rmmngtn/11_NoteTaker/issues"
   },
-  "homepage": "https://github.com/rmmngtn/11_NoteTaker#readme"
+  "homepage": "https://github.com/rmmngtn/11_NoteTaker#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
